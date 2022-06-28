@@ -1,0 +1,322 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+secret: '123456'
+hosts:
+  'mtalk.google.com': 108.177.125.188
+  'services.googleapis.cn': 74.125.203.94
+dns:
+  enable: true
+  default-nameserver:
+  - 119.29.29.29
+  - 94.140.14.14
+  - 1.1.1.1
+  - 208.67.222.222
+  - 1.2.4.8
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+  - 1.1.1.1
+  - 8.8.8.8
+  - https://1.1.1.1/dns-query
+  - 114.114.114.114
+  - 1.2.4.8
+  - tls://1.1.1.1:853
+  - tls://8.8.8.8:853
+  - tls://dns.adguard.com:853
+  fallback:
+  - tls://1.1.1.1:853
+  - tls://8.8.8.8:853
+  - tls://dns.adguard.com:853
+  - https://1.1.1.1/dns-query
+  fallback-filter:
+  geoip: true
+  ipcidr:
+  - 240.0.0.0/4
+  - 0.0.0.0/32
+  - 127.0.0.1/32
+  domain:
+  - +.google.com
+  - +.facebook.com
+  - +.twitter.com
+  - +.youtube.com
+  - +.xn--ngstr-lra8j.com
+  - +.google.cn
+  - +.googleapis.cn
+  - +.gvt1.com
+  tun:
+   enable: true
+   stack: gvisor
+   dns-hijack:
+     - 198.18.0.2:53
+   macOS-auto-route: true
+   macOS-auto-detect-interface: true
+fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+#(uneditable)編集が不要。ほぼすべてのClashに適用可能。
+
+proxies:
+- { name: "IEPL-JP", type: vmess, server: iepl-jp.xyz, port: 32000, uuid: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, alterId: 0, cipher: auto, network: tcp}
+- { name: "(SS)IEPL-JP", type: ss,server: iepl-jp.xyz, port: 22000, password: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, cipher: aes-256, udp: true}
+#(editable)編集が必要。
+
+proxy-groups:
+
+  - name: Original Select
+#(uneditable)編集が不要。日常使用のプロキシサーバー
+    type: select
+    proxies:
+      - Auto Select
+      - DIRECT
+#(editable)編集が必要。- All YOUR Proxiesすべてのプロキシサーバー
+
+  - name: Auto Select
+#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+    type: url-test
+    url: https://yahoo.co.jp
+    interval: 2400
+    tolerance: 50
+    proxies:
+#(editable)編集が必要。- YOUR Proxies often use日常使用のプロキシサーバー
+      - Backup Auto Select
+      
+  - name: Backup Auto Select
+#(uneditable)編集が不要。予備のプロキシサーバー。
+    type: url-test
+    url: https://www.nationalgallery.org.uk/
+    interval: 2400
+    tolerance: 50
+    proxies:
+#(editable)編集が必要。- YOUR Proxies from another supplierほかの提供元からのプロキシサーバー
+      
+  - name: Special Websites
+#(uneditable)編集が不要。日本または当地のプロキシサーバーで見れないサイトに適用。
+    type: select
+    proxies:
+      - Auto Special Select      
+      - DIRECT
+      
+  - name: Auto Special Select
+#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+    type: url-test
+    url: http://connectivitycheck.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    proxies:
+#(editable)編集が必要。- YOUR Proxies for those who restricts IP GEO-location制限を解除するためほかの地域にあるプロキシサーバー。
+
+  - name: Video Calling
+#(uneditable)編集が不要。ビデオ通話に適用。
+    type: select
+    proxies:
+      - Video Calling Auto Select
+
+  - name: Video Calling Auto Select
+#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+    type: url-test
+    url: https://matrix.org
+    interval: 2400
+    tolerance: 50
+    proxies:
+#(editable)編集が必要。- YOUR SS Proxies for Video Calling SSプロキシサーバーはここに多用されている。Skypeをのぞく多数なビデオ通話アプリに適用可能。
+
+  - name: For Direct
+#(uneditable)編集が不要。baidu、中国版Wechatなど常時または非常時中国でしか訪ねないサイト。
+    type: select
+    proxies:
+      - DIRECT
+      - Original Select
+      - Special Websites
+      
+  - name: For Reject
+#(uneditable)編集が不要。広告または迷惑サイト、アプリへの対策。
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - Original Select
+      - Special Websites
+
+rule-providers:
+  VideoCalling:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll.txt"
+    path: ./ruleset/VideoAll.yaml
+    interval: 604800  
+    
+  VideoCallingIP:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll(IP).txt"
+    path: ./ruleset/VideoAll(IP).yaml
+    interval: 604800  
+  
+  ForProxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll.txt"
+    path: ./ruleset/ProxyAll.yaml
+    interval: 604800
+        
+  ForProxyIP:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll(IP).txt"
+    path: ./ruleset/ProxyAll(IP).yaml
+    interval: 604800 
+
+  ForDirect:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll.txt"
+    path: ./ruleset/DirectAll.yaml
+    interval: 604800
+     
+  ForDirectIP:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll(IP).txt"
+    path: ./ruleset/ProxyAll(IP).yaml
+    interval: 604800 
+
+  TopLevelAddOns:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll.txt"
+    path: ./ruleset/ExtensionAll.yaml
+    interval: 604800
+
+  TopLevelAddOnsIP:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll(IP).txt"
+    path: ./ruleset/ExtensionAll(IP).yaml
+    interval: 604800 
+
+  ForReject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/RejectAll.txt"
+    path: ./ruleset/RejectAll.yaml
+    interval: 604800
+#(uneditable)編集が不要。urlはgithubへの指定可能。
+      
+rules:
+#(editable)編集が必要。自分が見つかった特殊なルール、ここに置いてください。
+ - RULE-SET,TopLevelAddOns,Original Select
+ - RULE-SET,TopLevelAddOnsIP,Original Select
+ - DOMAIN-KEYWORD,matrix.org,Video Calling
+ - DOMAIN-KEYWORD,riot.im,Video Calling
+ - DOMAIN-KEYWORD,encom.eu.org,Video Calling
+ - DOMAIN-KEYWORD,jami.net,Video Calling
+ - DOMAIN-KEYWORD,vector.im,Video Calling
+ - DOMAIN-KEYWORD,zoom.us,Video Calling
+ - RULE-SET,VideoCalling,Video Calling
+ - RULE-SET,VideoCallingIP,Video Calling
+ - DOMAIN-KEYWORD,1drv,Original Select
+ - DOMAIN-KEYWORD,apple-support.akadns.net,Original Select
+ - DOMAIN-KEYWORD,apple.com.akadns.net,Original Select
+ - DOMAIN-KEYWORD,apple.com.edgekey.net,Original Select
+ - DOMAIN-KEYWORD,icloud.com.akadns.net,Original Select
+ - DOMAIN-KEYWORD,icoudo,Original Select
+ - DOMAIN-KEYWORD,microsoft,Original Select
+ - DOMAIN-KEYWORD,onedrive,Original Select
+ - DOMAIN-KEYWORD,skydrive,Original Select
+ - DOMAIN-KEYWORD,steambroadcast,Original Select
+ - DOMAIN-KEYWORD,steamstore,Original Select
+ - DOMAIN-KEYWORD,steamuserimages,Original Select
+ - DOMAIN-KEYWORD,testflight,Original Select
+ - DOMAIN-KEYWORD,1drv,Original Select
+ - DOMAIN-KEYWORD,1e100,Original Select
+ - DOMAIN-KEYWORD,spotify,Original Select
+ - DOMAIN-KEYWORD,tiktokcdn,Original Select
+ - DOMAIN-KEYWORD,hbogoasia,Original Select
+ - DOMAIN-KEYWORD,abema,Original Select
+ - DOMAIN-KEYWORD,abematv,Original Select
+ - DOMAIN-KEYWORD,appledaily,Original Select
+ - DOMAIN-KEYWORD,avtb,Original Select
+ - DOMAIN-KEYWORD,bbcfmt,Original Select
+ - DOMAIN-KEYWORD,beetalk,Original Select
+ - DOMAIN-KEYWORD,blogspot,Original Select
+ - DOMAIN-KEYWORD,dropbox,Original Select
+ - DOMAIN-KEYWORD,dualstack.apiproxy-,Original Select
+ - DOMAIN-KEYWORD,dualstack.ichnaea-web-,Original Select
+ - DOMAIN-KEYWORD,facebook,Original Select
+ - DOMAIN-KEYWORD,fbcdn,Original Select
+ - DOMAIN-KEYWORD,github,Original Select
+ - DOMAIN-KEYWORD,gmail,Original Select
+ - DOMAIN-KEYWORD,google,Original Select
+ - DOMAIN-KEYWORD,instagram,Original Select
+ - DOMAIN-KEYWORD,japonx,Original Select
+ - DOMAIN-KEYWORD,japronx,Original Select
+ - DOMAIN-KEYWORD,jooxweb-api,Original Select
+ - DOMAIN-KEYWORD,livedazn,Original Select
+ - DOMAIN-KEYWORD,porn,Original Select
+ - DOMAIN-KEYWORD,sci-hub,Original Select
+ - DOMAIN-KEYWORD,spotify,Original Select
+ - DOMAIN-KEYWORD,telegram,Original Select
+ - DOMAIN-KEYWORD,ttvnw,Original Select
+ - DOMAIN-KEYWORD,twitter,Original Select
+ - DOMAIN-KEYWORD,uk-live,Original Select
+ - DOMAIN-KEYWORD,voddazn,Original Select
+ - DOMAIN-KEYWORD,whatsapp,Original Select
+ - DOMAIN-KEYWORD,youtube,Original Select
+ - RULE-SET,ForProxy,Original Select
+ - RULE-SET,ForProxyIP,Original Select
+ - DOMAIN-KEYWORD,adservice,For Reject
+ - DOMAIN-KEYWORD,advertisement,For Reject
+ - DOMAIN-KEYWORD,adsmogo,For Reject
+ - DOMAIN-KEYWORD,adsrvmedia,For Reject
+ - DOMAIN-KEYWORD,adsserving,For Reject
+ - DOMAIN-KEYWORD,adsystem,For Reject
+ - DOMAIN-KEYWORD,adwords,For Reject
+ - DOMAIN-KEYWORD,applovin,For Reject
+ - DOMAIN-KEYWORD,appsflyer,For Reject
+ - DOMAIN-KEYWORD,dwtrack,For Reject
+ - DOMAIN-KEYWORD,guanggao,For Reject
+ - DOMAIN-KEYWORD,omgmta,For Reject
+ - DOMAIN-KEYWORD,omniture,For Reject
+ - DOMAIN-KEYWORD,openx,For Reject
+ - DOMAIN-KEYWORD,partnerad,For Reject
+ - DOMAIN-KEYWORD,pingfore,For Reject
+ - DOMAIN-KEYWORD,socdm,For Reject
+ - DOMAIN-KEYWORD,supersonicads,For Reject
+ - RULE-SET,ForReject,For Reject
+ - DOMAIN-KEYWORD,localhost.sec.qq.com,For Direct
+ - DOMAIN-KEYWORD,localhost.ptlogin2.qq.com,For Direct
+ - DOMAIN-KEYWORD,360buy,For Direct
+ - DOMAIN-KEYWORD,alicdn,For Direct
+ - DOMAIN-KEYWORD,alimama,For Direct
+ - DOMAIN-KEYWORD,alipay,For Direct
+ - DOMAIN-KEYWORD,announce,For Direct
+ - DOMAIN-KEYWORD,appzapp,For Direct
+ - DOMAIN-KEYWORD,baidu,For Direct
+ - DOMAIN-KEYWORD,baidupcs,For Direct
+ - DOMAIN-KEYWORD,beplay,For Direct
+ - DOMAIN-KEYWORD,bilibili,For Direct
+ - DOMAIN-KEYWORD,ccgslb,For Direct
+ - DOMAIN-KEYWORD,chinacache,For Direct
+ - DOMAIN-KEYWORD,duobao,For Direct
+ - DOMAIN-KEYWORD,hnagroup,For Direct
+ - DOMAIN-KEYWORD,huluxia,For Direct
+ - DOMAIN-KEYWORD,jdpay,For Direct
+ - DOMAIN-KEYWORD,pstatp,For Direct
+ - DOMAIN-KEYWORD,qhimg,For Direct
+ - DOMAIN-KEYWORD,qiyi,For Direct
+ - DOMAIN-KEYWORD,tmall.com,For Direct
+ - DOMAIN-KEYWORD,vpimg,For Direct
+ - DOMAIN-KEYWORD,weibo,For Direct
+ - DOMAIN-KEYWORD,xiami,For Direct
+ - DOMAIN-KEYWORD,xiaomi,For Direct
+ - RULE-SET,ForDirect,For Direct
+ - RULE-SET,ForDirectIP,For Direct
+#(editable)編集が必要。- GEOIP,CN,For Direct普段は推薦しないが、外出のとき連れてくる端末におすすめ。また、Wechat、Taobaoなどのサイトはここにありませんのでご注意してください。
+ - MATCH,Original Select
