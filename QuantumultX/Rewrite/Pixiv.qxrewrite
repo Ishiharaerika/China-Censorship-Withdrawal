@@ -1,4 +1,4 @@
 https?:\/\/oauth.secure.pixiv.net\/auth/token url script-response-body https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/QuantumultX/Rewrite/PixivPremium.js
-https?:\/\/app-api.pixiv.net\/v1\/search.*popular url script-request-body https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/QuantumultX/Rewrite/PixivSearch.js
+https?:\/\/app-api.pixiv.net\/v2\/search.*popular url script-request-body https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/QuantumultX/Rewrite/PixivSearch.js
 
 hostname = *.pixiv.net
