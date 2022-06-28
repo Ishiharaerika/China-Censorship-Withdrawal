@@ -1,0 +1,13 @@
+ - DOMAIN-KEYWORD,1drv,ProxyAll
+ - DOMAIN-KEYWORD,apple-support.akadns.net,ProxyAll
+ - DOMAIN-KEYWORD,apple.com.akadns.net,ProxyAll
+ - DOMAIN-KEYWORD,apple.com.edgekey.net,ProxyAll
+ - DOMAIN-KEYWORD,icloud.com.akadns.net,ProxyAll
+ - DOMAIN-KEYWORD,icoudo,ProxyAll
+ - DOMAIN-KEYWORD,microsoft,ProxyAll
+ - DOMAIN-KEYWORD,onedrive,ProxyAll
+ - DOMAIN-KEYWORD,skydrive,ProxyAll
+ - DOMAIN-KEYWORD,steambroadcast,ProxyAll
+ - DOMAIN-KEYWORD,steamstore,ProxyAll
+ - DOMAIN-KEYWORD,steamuserimages,ProxyAll
+ - DOMAIN-KEYWORD,testflight,ProxyAll
