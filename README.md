@@ -1,0 +1,2 @@
+I won't and barely accquire any Pull-Request. Thank you for your understanding.
+For China users, link this content at https://www.jsdelivr.com/package/npm/china-censorship-withdrawal. If it is still being censored, try to use **copy/a or copy/b** command on Windows for combining text/image files which can still be read as .yaml, then upload to any file hosting service that can be accessed in China. You may also try update the list through a network that already bypassed GFW.
