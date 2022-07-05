@@ -1,1 +1,1 @@
-
+Remember deleting all dns settings(name servers) using with router-based bypass method(OpenWrt etc.)

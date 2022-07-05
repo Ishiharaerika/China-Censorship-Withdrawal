@@ -75,7 +75,8 @@ proxy-groups:
     proxies:
       - Auto Select
       - DIRECT
-#(editable)編集が必要。- All YOUR Proxiesすべてのプロキシサーバー
+      #- All YOUR Proxiesすべてのプロキシサーバー
+#(editable)編集が必要。
 
   - name: Auto Select
 #(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
@@ -84,7 +85,8 @@ proxy-groups:
     interval: 2400
     tolerance: 50
     proxies:
-#(editable)編集が必要。- YOUR Proxies often use日常使用のプロキシサーバー
+      #- YOUR Proxies often use日常使用のプロキシサーバー
+#(editable)編集が必要。
       - Backup Auto Select
       
   - name: Backup Auto Select
@@ -94,7 +96,8 @@ proxy-groups:
     interval: 2400
     tolerance: 50
     proxies:
-#(editable)編集が必要。- YOUR Proxies from another supplierほかの提供元からのプロキシサーバー
+      #- YOUR Proxies from another supplierほかの提供元からのプロキシサーバー
+#(editable)編集が必要。
       
   - name: Special Websites
 #(uneditable)編集が不要。日本または当地のプロキシサーバーで見れないサイトに適用。
@@ -110,7 +113,8 @@ proxy-groups:
     interval: 600
     tolerance: 50
     proxies:
-#(editable)編集が必要。- YOUR Proxies for those who restricts IP GEO-location制限を解除するためほかの地域にあるプロキシサーバー。
+      #- YOUR Proxies for those who restricts IP GEO-location制限を解除するためほかの地域にあるプロキシサーバー。
+#(editable)編集が必要。
 
   - name: Video Calling
 #(uneditable)編集が不要。ビデオ通話に適用。
@@ -125,7 +129,8 @@ proxy-groups:
     interval: 2400
     tolerance: 50
     proxies:
-#(editable)編集が必要。- YOUR SS Proxies for Video Calling SSプロキシサーバーはここに多用されている。Skypeをのぞく多数なビデオ通話アプリに適用可能。
+      #- YOUR SS Proxies for Video Calling SSプロキシサーバーはここに多用されている。Skypeをのぞく多数なビデオ通話アプリに適用可能。
+#(editable)編集が必要。
 
   - name: For Direct
 #(uneditable)編集が不要。baidu、中国版Wechatなど常時または非常時中国でしか訪ねないサイト。
@@ -207,12 +212,20 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/RejectAll.txt"
     path: ./ruleset/RejectAll.yaml
     interval: 604800
-#(uneditable)編集が不要。urlはgithubへの指定可能。
+    
+ #Wechat:
+    #type: http
+    #behavior: classical
+    #url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/Wechat/Wechat.txt"
+    #path: ./ruleset/Wechat.yaml
+    #interval: 604800
+#(uneditable)編集が不要。urlはgithubへの指定可能。 Please justify Wechat rule by yourself by removing "#" before every line. Remember there's another line under. この5つの行を自分の状況に合わせて調整してください、"#"を削除すればいいです。下にも一行あるのでご注意を。
       
 rules:
 #(editable)編集が必要。自分が見つかった特殊なルール、ここに置いてください。
  - RULE-SET,TopLevelAddOns,Original Select
- - RULE-SET,TopLevelAddOnsIP,Original Select
+ - RULE-SET,TopLevelAddOnsIP,Original Select，no-resolve
+ #- RULE-SET,Wechat,For Direct
  - DOMAIN-KEYWORD,matrix.org,Video Calling
  - DOMAIN-KEYWORD,riot.im,Video Calling
  - DOMAIN-KEYWORD,encom.eu.org,Video Calling
@@ -220,7 +233,7 @@ rules:
  - DOMAIN-KEYWORD,vector.im,Video Calling
  - DOMAIN-KEYWORD,zoom.us,Video Calling
  - RULE-SET,VideoCalling,Video Calling
- - RULE-SET,VideoCallingIP,Video Calling
+ - RULE-SET,VideoCallingIP,Video Calling，no-resolve
  - DOMAIN-KEYWORD,1drv,Original Select
  - DOMAIN-KEYWORD,apple-support.akadns.net,Original Select
  - DOMAIN-KEYWORD,apple.com.akadns.net,Original Select
@@ -270,7 +283,7 @@ rules:
  - DOMAIN-KEYWORD,whatsapp,Original Select
  - DOMAIN-KEYWORD,youtube,Original Select
  - RULE-SET,ForProxy,Original Select
- - RULE-SET,ForProxyIP,Original Select
+ - RULE-SET,ForProxyIP,Original Select，no-resolve
  - DOMAIN-KEYWORD,adservice,For Reject
  - DOMAIN-KEYWORD,advertisement,For Reject
  - DOMAIN-KEYWORD,adsmogo,For Reject
@@ -318,5 +331,6 @@ rules:
  - DOMAIN-KEYWORD,xiaomi,For Direct
  - RULE-SET,ForDirect,For Direct
  - RULE-SET,ForDirectIP,For Direct
-#(editable)編集が必要。- GEOIP,CN,For Direct普段は推薦しないが、外出のとき連れてくる端末におすすめ。また、Wechat、Taobaoなどのサイトはここにありませんのでご注意してください。
+ #- GEOIP,CN,For Direct普段は推薦しないが、外出のとき連れてくる端末におすすめ。また、Wechat、Taobaoなどのサイトはここにありませんのでご注意してください。
+#(editable)編集が必要。
  - MATCH,Original Select
