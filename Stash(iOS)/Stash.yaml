@@ -63,13 +63,13 @@ http:
       timeout: 10
 script-providers:
   bilibili:
-    url: 
+    url: https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/Rewrite/bilibili.js
     interval: 604800
   PixivPremium:
-    url:
+    url: https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/Rewrite/PixivPremium.js
     interval: 604800
   PixivSearch:
-    url: 
+    url: https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/Rewrite/PixivSearch.js
     interval: 604800 
 external-controller: '0.0.0.0:9090'
 secret: '123456'
@@ -223,70 +223,70 @@ rule-providers:
   VideoCalling:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll.txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/VideoAll.txt"
     path: ./ruleset/VideoAll.yaml
     interval: 604800  
     
   VideoCallingIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll(IP).txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/VideoAll(IP).txt"
     path: ./ruleset/VideoAll(IP).yaml
     interval: 604800  
   
   ForProxy:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll.txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/ProxyAll.txt"
     path: ./ruleset/ProxyAll.yaml
     interval: 604800
         
   ForProxyIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll(IP).txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/ProxyAll(IP).txt"
     path: ./ruleset/ProxyAll(IP).yaml
     interval: 604800 
 
   ForDirect:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll.txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/DirectAll.txt"
     path: ./ruleset/DirectAll.yaml
     interval: 604800
      
   ForDirectIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll(IP).txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/DirectAll(IP).txt"
     path: ./ruleset/ProxyAll(IP).yaml
     interval: 604800 
 
   TopLevelAddOns:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll.txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/ExtensionAll.txt"
     path: ./ruleset/ExtensionAll.yaml
     interval: 604800
 
   TopLevelAddOnsIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll(IP).txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/ExtensionAll(IP).txt"
     path: ./ruleset/ExtensionAll(IP).yaml
     interval: 604800 
 
   ForReject:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/RejectAll.txt"
+    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/RejectAll.txt"
     path: ./ruleset/RejectAll.yaml
     interval: 604800
     
   #Wechat:
     #type: http
     #behavior: classical
-    #url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/Wechat/Wechat.txt"
+    #url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Stash(iOS)/Wechat/Wechat.txt"
     #path: ./ruleset/Wechat.yaml
     #interval: 604800
 #(uneditable)編集が不要。urlはgithubへの指定可能。 Please justify Wechat rule by yourself by removing "#" before every line. Remember there's another line under. この5つの行を自分の状況に合わせて調整してください、"#"を削除すればいいです。下にも一行あるのでご注意を。

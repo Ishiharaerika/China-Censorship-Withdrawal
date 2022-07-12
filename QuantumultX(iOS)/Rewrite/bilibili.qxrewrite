@@ -1,3 +1,4 @@
+^https?:\/\/api\.bilibili\.com\/x\/v2\/dm\/ad url reject-dict
 # 去除搜索中的大家都在搜
 ^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/vd\/Search\/recommend_words url reject-dict
 # 去除动态中的话题
