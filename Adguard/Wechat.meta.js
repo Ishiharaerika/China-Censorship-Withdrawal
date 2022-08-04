@@ -4,7 +4,7 @@
 // @version				1.0
 // @downloadURL			https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.meta.js
 // @updateURL				https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.meta.js
-// @include				^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad
+// @match				*:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad*
 // ==/UserScript==
 
 var obj = JSON.parse($response.body);
