@@ -1,3 +1,7 @@
+! Title: ClashAlter
+! Description: Alter RejectAll in Clash rule
+! Version: 1.0
+
 ||/.*adservice.*/
 ||/.*advertisement.*/
 ||/.*adsmogo.*/
