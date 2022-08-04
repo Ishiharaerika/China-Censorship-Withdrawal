@@ -2,8 +2,8 @@
 @name					WechatAdblock
 @description			Disable part of Wechat ads.
 @version				1.0
-@downloadURL			https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.js
-@updateURL				https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.js
+@downloadURL			https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.meta.js
+@updateURL				https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Adguard/Wechat.meta.js
 @include				^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad
 
 ==/UserScript==
