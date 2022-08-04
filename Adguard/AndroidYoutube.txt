@@ -1,8 +1,8 @@
-||[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad
-||youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break
-||(www|s)\.youtube\.com\/api\/stats\/ads
-||(www|s)\.youtube\.com\/(pagead|ptracking)
-||s\.youtube\.com\/api\/stats\/qoe\?adcontext
+||/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad/
+||/youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break/
+||/(www|s)\.youtube\.com\/api\/stats\/ads/
+||/(www|s)\.youtube\.com\/(pagead|ptracking)/
+||/s\.youtube\.com\/api\/stats\/qoe\?adcontext/
 ||ads.doubleclick.net^
 ||s.ytimg.com^
 ||ad.youtube.com^
