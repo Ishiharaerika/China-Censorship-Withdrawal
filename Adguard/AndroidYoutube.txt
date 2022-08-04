@@ -1,6 +1,7 @@
 ! Title: AndroidYoutube
 ! Description: Removing Youtube ads working on as user-fileter.
 ! Version: 1.0
+||/(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+)/$redirect=/$1$2$3/
 ||/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad/
 ||/youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break/
 ||/(www|s)\.youtube\.com\/api\/stats\/ads/
