@@ -384,7 +384,6 @@ payload:
   - '+.mattli.us'
   - '+.mazc.riot.im'
   - '+.mbiegert.ch'
-  - '+.meet.jit.si"
   - '+.mellow.zone'
   - '+.mephis.to'
   - '+.mgp.ax.lt'
