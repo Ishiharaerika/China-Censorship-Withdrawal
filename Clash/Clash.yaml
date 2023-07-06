@@ -236,7 +236,7 @@ rule-providers:
 rules:
 #(editable)編集が必要。自分が見つけた特殊なルールは、ここに置く。
  - RULE-SET,TopLevelAddOns,Original Select
- - RULE-SET,TopLevelAddOnsIP,Original Select，no-resolve
+ - RULE-SET,TopLevelAddOnsIP,Original Select
  #- RULE-SET,Wechat,For Direct
  - DOMAIN-KEYWORD,matrix.org,Video Calling
  - DOMAIN-KEYWORD,riot.im,Video Calling
@@ -245,7 +245,7 @@ rules:
  - DOMAIN-KEYWORD,vector.im,Video Calling
  - DOMAIN-KEYWORD,zoom.us,Video Calling
  - RULE-SET,VideoCalling,Video Calling
- - RULE-SET,VideoCallingIP,Video Calling，no-resolve
+ - RULE-SET,VideoCallingIP,Video Calling
  - DOMAIN-KEYWORD,1drv,Original Select
  - DOMAIN-KEYWORD,apple-support.akadns.net,Original Select
  - DOMAIN-KEYWORD,apple.com.akadns.net,Original Select
@@ -295,7 +295,7 @@ rules:
  - DOMAIN-KEYWORD,whatsapp,Original Select
  - DOMAIN-KEYWORD,youtube,Original Select
  - RULE-SET,ForProxy,Original Select
- - RULE-SET,ForProxyIP,Original Select，no-resolve
+ - RULE-SET,ForProxyIP,Original Select
  - DOMAIN-KEYWORD,adservice,For Reject
  - DOMAIN-KEYWORD,advertisement,For Reject
  - DOMAIN-KEYWORD,adsmogo,For Reject
