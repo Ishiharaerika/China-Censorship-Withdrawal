@@ -2,40 +2,74 @@ port: 7890
 socks-port: 7891
 redir-port: 7892
 allow-lan: true
+bind-address: '*'
+find-process-mode: off
+tcp-concurrent: true
 mode: Rule
+geodata-mode: false
+geox-url:
+  geosite: 'https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
+  mmdb: 'https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb'
 log-level: info
+ipv6: false
 external-controller: '0.0.0.0:9090'
 secret: '123456'
-hosts:
-  'mtalk.google.com': 108.177.125.188
-  'services.googleapis.cn': 74.125.203.94
+profile:
+  store-selected: false
+  store-fake-ip: true
+tun:
+  enable: true
+  stack: system
+  auto-detect-interface: true
+  auto-route: true
+  dns-hijack:
+  - any:53
+  strict_route: false
+  # inet4_route_address:
+  # - 0.0.0.0/1
+  # - 128.0.0.0/1
+  # inet6_route_address:
+  # - "::/1"
+  # - "8000::/1"
+  endpoint_independent_nat: false
+sniffer:
+  enable: false
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '*.baidu.com'
+  force-domain:
+    - '+'
 dns:
+  listen: 0.0.0.0:53
+  prefer-h3: true
   enable: true
   default-nameserver:
   - 119.29.29.29
-  - 94.140.14.14
+  - 94.140.14.140
   - 1.1.1.1
+  - 223.5.5.5
   - 208.67.222.222
-  - 1.2.4.8
-  ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   nameserver:
-  - 1.1.1.1
-  - 8.8.8.8
-  - https://1.1.1.1/dns-query
   - 114.114.114.114
-  - 1.2.4.8
-  - tls://1.1.1.1:853
-  - tls://8.8.8.8:853
-  - tls://dns.adguard.com:853
+  - 8.8.8.8
   fallback:
-  - tls://1.1.1.1:853
-  - tls://8.8.8.8:853
-  - tls://dns.adguard.com:853
-  - https://1.1.1.1/dns-query
+  - 'tcp://1.1.1.1#Auto Select'
+  - 'tcp://8.8.8.8#Auto Select'
+  - 'tcp://94.140.14.140#Auto Select'
+  - 'https://1.1.1.1/dns-query#Auto Select'
+  - 'https://dns.google.com/dns-query#Auto Select'
+  - 'tls://1.1.1.1:853#Auto Select'
+  - 'tls://8.8.8.8:853#Auto Select'
+  - 'tls://dns.adguard.com:853#Auto Select'
   fallback-filter:
   geoip: true
+  geoip-code: CN
   ipcidr:
   - 240.0.0.0/4
   - 0.0.0.0/32
@@ -49,18 +83,7 @@ dns:
   - +.google.cn
   - +.googleapis.cn
   - +.gvt1.com
-  tun:
-   enable: true
-   stack: gvisor
-   dns-hijack:
-     - 198.18.0.2:53
-   macOS-auto-route: true
-   macOS-auto-detect-interface: true
-fallback-filter:
-    geoip: true
-    ipcidr:
-      - 240.0.0.0/4
-#(uneditable)編集が不要。ほぼすべてのClashに適用可能。
+#(uneditable)編集は不要。ほぼすべてのClashに適用可能。
 
 proxies:
 - { name: "IEPL-JP", type: vmess, server: iepl-jp.xyz, port: 32000, uuid: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, alterId: 0, cipher: auto, network: tcp}
@@ -70,7 +93,7 @@ proxies:
 proxy-groups:
 
   - name: Original Select
-#(uneditable)編集が不要。日常使用のプロキシサーバー
+#(uneditable)編集は不要。日常使用のプロキシサーバー
     type: select
     proxies:
       - Auto Select
@@ -79,7 +102,7 @@ proxy-groups:
 #(editable)編集が必要。
 
   - name: Auto Select
-#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+#(uneditable)編集は不要。オート選択機器、最低の遅延を持つプロキシサーバー。
     type: url-test
     url: https://yahoo.co.jp
     interval: 2400
@@ -87,27 +110,16 @@ proxy-groups:
     proxies:
       #- YOUR Proxies often use日常使用のプロキシサーバー
 #(editable)編集が必要。
-      - Backup Auto Select
-      
-  - name: Backup Auto Select
-#(uneditable)編集が不要。予備のプロキシサーバー。
-    type: url-test
-    url: https://www.nationalgallery.org.uk/
-    interval: 2400
-    tolerance: 50
-    proxies:
-      #- YOUR Proxies from another supplierほかの提供元からのプロキシサーバー
-#(editable)編集が必要。
-      
+
   - name: Special Websites
-#(uneditable)編集が不要。日本または当地のプロキシサーバーで見れないサイトに適用。
+#(uneditable)編集は不要。日本または当地のプロキシサーバーで見れないサイトに適用。
     type: select
     proxies:
       - Auto Special Select      
       - DIRECT
       
   - name: Auto Special Select
-#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+#(uneditable)編集は不要。オート選択機器、最低の遅延を持つプロキシサーバー。
     type: url-test
     url: http://connectivitycheck.gstatic.com/generate_204
     interval: 600
@@ -117,23 +129,23 @@ proxy-groups:
 #(editable)編集が必要。
 
   - name: Video Calling
-#(uneditable)編集が不要。ビデオ通話に適用。
+#(uneditable)編集は不要。ビデオ通話に適用。
     type: select
     proxies:
       - Video Calling Auto Select
 
   - name: Video Calling Auto Select
-#(uneditable)編集が不要。オート選択機器、最低の遅延を持つプロキシサーバー。
+#(uneditable)編集は不要。オート選択機器、最低の遅延を持つプロキシサーバー。
     type: url-test
     url: https://matrix.org
-    interval: 2400
-    tolerance: 50
+    interval: 3600
+    tolerance: 90
     proxies:
-      #- YOUR SS Proxies for Video Calling SSプロキシサーバーはここに多用されている。Skypeをのぞく多数なビデオ通話アプリに適用可能。
+      #- YOUR SS Proxies for Video Calling SSプロキシサーバーはここに適用。Skypeをのぞく多数なビデオ通話アプリに適用可能。
 #(editable)編集が必要。
 
   - name: For Direct
-#(uneditable)編集が不要。baidu、中国版Wechatなど常時または非常時中国でしか訪ねないサイト。
+#(uneditable)編集は不要。baidu、中国版Wechatなど常時または非常時中国でしか訪ねないサイト。
     type: select
     proxies:
       - DIRECT
@@ -141,7 +153,7 @@ proxy-groups:
       - Special Websites
       
   - name: For Reject
-#(uneditable)編集が不要。広告または迷惑サイト、アプリへの対策。
+#(uneditable)編集は不要。広告または迷惑サイト、アプリへの対策。
     type: select
     proxies:
       - REJECT
@@ -153,76 +165,76 @@ rule-providers:
   VideoCalling:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll.txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/VideoAll.txt"
     path: ./ruleset/VideoAll.yaml
     interval: 604800  
     
   VideoCallingIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/VideoAll(IP).txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/VideoAll(IP).txt"
     path: ./ruleset/VideoAll(IP).yaml
     interval: 604800  
   
   ForProxy:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll.txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/ProxyAll.txt"
     path: ./ruleset/ProxyAll.yaml
     interval: 604800
         
   ForProxyIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ProxyAll(IP).txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/ProxyAll(IP).txt"
     path: ./ruleset/ProxyAll(IP).yaml
     interval: 604800 
 
   ForDirect:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll.txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/DirectAll.txt"
     path: ./ruleset/DirectAll.yaml
     interval: 604800
      
   ForDirectIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/DirectAll(IP).txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/DirectAll(IP).txt"
     path: ./ruleset/ProxyAll(IP).yaml
     interval: 604800 
 
   TopLevelAddOns:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll.txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/ExtensionAll.txt"
     path: ./ruleset/ExtensionAll.yaml
     interval: 604800
 
   TopLevelAddOnsIP:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/ExtensionAll(IP).txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/ExtensionAll(IP).txt"
     path: ./ruleset/ExtensionAll(IP).yaml
     interval: 604800 
 
   ForReject:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/RejectAll.txt"
+    url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/RejectAll.txt"
     path: ./ruleset/RejectAll.yaml
     interval: 604800
     
  #Wechat:
     #type: http
     #behavior: classical
-    #url: "https://cdn.jsdelivr.net/npm/china-censorship-withdrawal/Clash/Wechat/Wechat.txt"
+    #url: "https://raw.githubusercontent.com/Ishiharaerika/China-Censorship-Withdrawal/main/Clash/Wechat/Wechat.txt"
     #path: ./ruleset/Wechat.yaml
     #interval: 604800
-#(uneditable)編集が不要。urlはgithubへの指定可能。 Please justify Wechat rule by yourself by removing "#" before every line. Remember there's another line under. この5つの行を自分の状況に合わせて調整してください、"#"を削除すればいいです。下にも一行あるのでご注意を。
+#(uneditable)編集は不要。urlはgithubへの指定可能。 Please justify Wechat rule by yourself by removing "#" before every line. Remember there's another line under. この5つの行を自分の状況に合わせて調整してください、"#"を削除すればいいです。下にも一行あるのでご注意を。
       
 rules:
-#(editable)編集が必要。自分が見つかった特殊なルール、ここに置いてください。
+#(editable)編集が必要。自分が見つけた特殊なルールは、ここに置く。
  - RULE-SET,TopLevelAddOns,Original Select
  - RULE-SET,TopLevelAddOnsIP,Original Select，no-resolve
  #- RULE-SET,Wechat,For Direct
@@ -331,6 +343,7 @@ rules:
  - DOMAIN-KEYWORD,xiaomi,For Direct
  - RULE-SET,ForDirect,For Direct
  - RULE-SET,ForDirectIP,For Direct
- #- GEOIP,CN,For Direct普段は推薦しないが、外出のとき連れてくる端末におすすめ。また、Wechat、Taobaoなどのサイトはここにありませんのでご注意してください。
+ #- GEOIP,CN,For Direct
+ #普段は推奨しないが、外出のとき連れてくる端末におすすめ。また、Wechat、Taobaoなどのサイトはここにはないのでご注意を。
 #(editable)編集が必要。
  - MATCH,Original Select
