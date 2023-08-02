@@ -6,4 +6,5 @@ ExtensionAll includes the one possibly missing in ProxyAll & DirectAll, as well 
 <br>
 You may use template.yaml as a Clash rule's reference. **It includes ExtensionAll(KeyWord)**.<br>
 <br>
+It seems that SS Proxies don't work well in most region of China, therefore it's not recommended anymore. Please try using Vmess, even for games.
 Currently Video calling rules supports Zoom, Matrix(Element),**VERY LITTLE part of Jitsi**. It's technically unsupportable for Skype.
