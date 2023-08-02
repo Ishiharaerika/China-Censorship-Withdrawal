@@ -4,9 +4,9 @@ ProxyAll&ExtensionAll use data from [Loyalsoldier](https://github.com/Loyalsoldi
 <br>
 ExtensionAll includes the one possibly missing in ProxyAll & DirectAll, as well as enhancing its priority within all rules(In clash, the rule in a former position has a higher priority). Microsoft(with onedrive), Apple(AppStore, AppleDaily, AppleProxy, AppleMail, AppleNews, AppleMusic, AppleTV, iCloud, FindMy, TestFlight, iCloudPrivateRelay, FitnessPlus, Siri), Cloudflare, TeamViewer, Dell, Intel, Nvidia, Mozilla, Nike, Starbucks, Samsung, Steam.<br>
 <br>
-**ExtensionAll(KeyWord) can't be load as yaml rule. Please add it on manually**. Need to mention that DirectAll&DirectAll(IP) contains all services which cannot access using Not-China IPs. Services can be used with these IPs **such as Wechat(sometimes may not work)** was excluded, which means they were out.<br>
+Need to mention that DirectAll&DirectAll(IP) contains all services which cannot access using Not-China IPs. Services can be used with these IPs **such as Wechat(sometimes may not work)** was excluded, which means they were out.<br>
 <br>
-You may use template.yaml as a Clash rule's reference. **It includes ExtensionAll(KeyWord)**.<br>
+You may use template.yaml as a Clash rule's reference.<br>
 <br>
 It seems that SS Proxies don't work well in most region of China, therefore it's not recommended anymore. Please try using Vmess, even for games.
 Currently Video calling rules supports Zoom, Matrix(Element),**VERY LITTLE part of Jitsi**. It's technically unsupportable for Skype.
