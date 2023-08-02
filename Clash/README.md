@@ -6,7 +6,7 @@ ExtensionAll includes the one possibly missing in ProxyAll & DirectAll, as well 
 <br>
 Need to mention that DirectAll&DirectAll(IP) contains all services which cannot access using Not-China IPs. Services can be used with these IPs **such as Wechat(sometimes may not work)** was excluded, which means they were out.<br>
 <br>
-You may use template.yaml as a Clash rule's reference.<br>
+You may use Clash.yaml as a Clash rule's reference.<br>
 <br>
 It seems that SS Proxies don't work well in most region of China, therefore it's not recommended anymore. Please try using Vmess, even for games.
-Currently Video calling rules supports Zoom, Matrix(Element),**VERY LITTLE part of Jitsi**. It's technically unsupportable for Skype.
+Currently Video calling rules supports Zoom, Matrix(Element), **VERY LITTLE part of Jitsi**. It's technically unsupportable for Skype.
