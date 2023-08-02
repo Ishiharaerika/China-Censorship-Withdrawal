@@ -6,9 +6,9 @@ ExtensionAll includes the one possibly missing in ProxyAll & DirectAll, as well 
 <br>
 Need to mention that DirectAll&DirectAll(IP) contains all services which cannot access using Not-China IPs. Services can be used with these IPs **such as Wechat(sometimes may not work)** was excluded, which means they were out.<br>
 <br>
-UnBan.txt makes domains in it being processed but not rejected. Which work as a whitelist.<br>
+UnBan.txt makes domains in it being processed but not rejected. Which works as a whitelist.<br>
 <br>
-Rejecting works unefficient on Clash, so please considered use AdguardHome as alternative. Rejecting rules are **UNSET BY DEFAULT**.<br>
+Rejecting works unefficient on Clash, so please consider using AdguardHome as alternative. Rejecting rules are **UNSET BY DEFAULT**.<br>
 <br>
 You may use Clash.yaml as a Clash rule's reference.<br>
 <br>
