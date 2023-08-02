@@ -1,4 +1,4 @@
-Lists in the branch is compable with both Adguard&AdguardHome. Which means it supports Adguard **fully**, but AdguardHome **partially**.OnAndroid **doesn't** support AdguardHome.<br>
+Lists in the branch is compable with both Adguard&AdguardHome. Which means it supports Adguard **fully**, but AdguardHome **partially**. OnAndroid **doesn't** support AdguardHome.<br>
 <br>
 ClashAlter.txt function as RejectAll in Clash settings.<br>
 <br>
