@@ -1170,7 +1170,7 @@ payload:
   - '+.wunderlist.com'
   - '+.www-cdn.icloud.com.akadns.net'
   - '+.www.apple.com.edgekey.net'
-  - '+.wwwicloud.com'
+  - '+.www.icloud.com'
   - '+.xamarin.com'
   - '+.xbox.com'
   - '+.xboxab.com'
