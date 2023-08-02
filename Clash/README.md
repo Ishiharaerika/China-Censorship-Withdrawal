@@ -8,7 +8,7 @@ Need to mention that DirectAll&DirectAll(IP) contains all services which cannot 
 <br>
 UnBan.txt makes domains in it being processed but not rejected. Which work as a whitelist.<br>
 <br>
-Rejscting works unefficient on Clash, so please considered use AdguardHome as alternative. Rejecting rules are **UNSET BY DEFAULT**.<br>
+Rejecting works unefficient on Clash, so please considered use AdguardHome as alternative. Rejecting rules are **UNSET BY DEFAULT**.<br>
 <br>
 You may use Clash.yaml as a Clash rule's reference.<br>
 <br>
