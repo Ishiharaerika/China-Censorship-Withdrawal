@@ -1,4 +1,4 @@
-I won't and barely accquire any Pull-Request. Thank you for your understanding.<br>
+I won't and barely accquire any Issues. Thank you for your understanding.<br>
 <br>
 *My combination while staying in China is OpenWrt(OpenClash/Docker/AdguardHome)+Android(Clash/Adguard)+iOS(QuantumultX/Adguard Pro). You may use Surge running on a 7/24 Mac to alter OpenWrt. I believe this is the most convenient way for accessing through GFW. Make it a referrence!*<br>
 <br>
